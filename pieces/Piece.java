@@ -3,9 +3,9 @@ package game.pieces;
 import game.Color;
 import game.Move;
 import game.Position;
+import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -51,13 +51,17 @@ public abstract class Piece {
         this.name = name;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
     private void setImage(){
         String nameOfImage = name + "_" + color + ".png";
-        try{
-            Image img = ImageIO.read(getClass().getResourceAsStream("/resources/"+nameOfImage));
-        } catch (IOException e) {
-            System.out.println("Nie można załadowac " + nameOfImage);
-        }
+        image = new Image("/game/resources/"+nameOfImage);
     }
 
     public abstract List<Move> getAvailableMoves();
