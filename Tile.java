@@ -14,6 +14,7 @@ public class Tile extends Rectangle {
 
     private Piece piece;
     private Pane chessboard;
+    private ImageView image;
     double coordX;
     double coordY;
 
@@ -38,10 +39,9 @@ public class Tile extends Rectangle {
 
     public void setPiece(Piece piece) {
         this.piece = piece;
-        ImageView img = new ImageView(piece.getImage());
-        System.out.println("MY x and y; " + coordX + " - " + coordY);
-        img.relocate(coordX, coordY);
-        chessboard.getChildren().add(img);
+        image = new ImageView(piece.getImage());
+        image.relocate(coordX, coordY);
+        chessboard.getChildren().add(image);
     }
 
     public Pane getChessboard() {
@@ -50,5 +50,13 @@ public class Tile extends Rectangle {
 
     public void setChessboard(Pane chessboard) {
         this.chessboard = chessboard;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 }

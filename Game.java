@@ -1,6 +1,5 @@
 package game;
 
-import game.pieces.Piece;
 import game.pieces.PieceFactory;
 import javafx.scene.layout.Pane;
 
@@ -23,16 +22,6 @@ public class Game {
     }
 
     private void preparePieces(){
-
-        boolean isBlack = true;
-        for(int i=0; i<Game.WIDTH_BOARD; ++i){
-            for(int j=0; j<Game.HEIGHT_BOARD; ++j){
-                board[j][i] = new Tile(isBlack, i, j);
-                board[j][i].setChessboard(chessboard);
-                isBlack = !isBlack;
-            }
-            isBlack = !isBlack;
-        }
 
         PieceFactory pieceFactory = new PieceFactory();
         board[0][0].setPiece(pieceFactory.createPiece("Rook", PieceColor.BLACK));
@@ -76,9 +65,11 @@ public class Game {
         boolean isBlack = true;
         for(int i=0; i<HEIGHT_BOARD; ++i){
             for(int j=0; j<WIDTH_BOARD; ++j){
-                isBlack = !isBlack;
                 Tile tile = new Tile(isBlack, i, j);
+                board[j][i] = tile;
+                tile.setChessboard(chessboard);
                 chessboard.getChildren().add(tile);
+                isBlack = !isBlack;
             }
             isBlack = !isBlack;
         }
