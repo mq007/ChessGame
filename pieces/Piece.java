@@ -1,12 +1,10 @@
 package game.pieces;
 
-import game.Color;
+import game.PieceColor;
 import game.Move;
 import game.Position;
 import javafx.scene.image.Image;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,14 +13,14 @@ import java.util.List;
 
 public abstract class Piece {
     private Position position;
-    private Color color;
+    private PieceColor pieceColor;
     private String name;
     private Image image;
 
     protected Piece(){};
 
-    public Piece(Color color, String name) {
-        this.color = color;
+    public Piece(PieceColor pieceColor, String name) {
+        this.pieceColor = pieceColor;
         this.name = name;
         setImage();
     }
@@ -35,12 +33,12 @@ public abstract class Piece {
         this.position = position;
     }
 
-    public Color getColor() {
-        return color;
+    public PieceColor getPieceColor() {
+        return pieceColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setPieceColor(PieceColor pieceColor) {
+        this.pieceColor = pieceColor;
     }
 
     public String getName() {
@@ -60,7 +58,7 @@ public abstract class Piece {
     }
 
     private void setImage(){
-        String nameOfImage = name + "_" + color + ".png";
+        String nameOfImage = name + "_" + pieceColor + ".png";
         image = new Image("/game/resources/"+nameOfImage);
     }
 

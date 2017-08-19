@@ -1,34 +1,27 @@
 package game.controller;
 
 import game.Game;
-import game.pieces.Piece;
+import game.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by mq on 2017-08-18.
  */
 public class ChessboardController {
 
-    @FXML private ImageView chessboard;
+    @FXML private Pane chessboard;
+    @FXML private Pane mainpane;
     @FXML private Label topLabel;
-    @FXML private ImageView a8;
 
 
     @FXML
     void initialize() {
         Game game = new Game();
+        game.setChessboard(chessboard);
         game.newGame();
 
-        Piece[][] board = game.getBoard();
-
-        setUpImages(board);
-    }
-
-    private void setUpImages(Piece[][] board){
-        chessboard.setImage(new Image("/game/resources/chessboard.jpg"));
-        a8.setImage(board[0][0].getImage());
+        Tile[][] board = game.getBoard();
     }
 }

@@ -1,6 +1,6 @@
 package game.pieces;
 
-import game.Color;
+import game.PieceColor;
 import game.Move;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Knight extends Piece {
 
-    public Knight(Color color) {
-        super(color, "Knight");
+    public Knight(PieceColor pieceColor) {
+        super(pieceColor, "Knight");
     }
 
     @Override

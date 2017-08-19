@@ -1,6 +1,6 @@
 package game.pieces;
 
-import game.Color;
+import game.PieceColor;
 import game.Move;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-    public Pawn(Color color) {
-        super(color, "Pawn");
+    public Pawn(PieceColor pieceColor) {
+        super(pieceColor, "Pawn");
     }
 
     @Override
