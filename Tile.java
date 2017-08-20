@@ -2,15 +2,18 @@ package game;
 
 import game.pieces.Piece;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DataFormat;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import java.io.Serializable;
 
 
 /**
  * Created by mq on 2017-08-18.
  */
-public class Tile extends Rectangle {
+public class Tile extends Rectangle{
 
     private Piece piece;
     private Pane chessboard;

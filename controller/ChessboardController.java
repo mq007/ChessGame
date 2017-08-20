@@ -2,7 +2,6 @@ package game.controller;
 
 import game.Game;
 import game.Tile;
-import game.pieces.Piece;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
@@ -10,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 
@@ -22,6 +22,9 @@ public class ChessboardController {
     @FXML private Pane chessboard;
     @FXML private Pane mainpane;
     @FXML private Label topLabel;
+
+    Tile startDragTile;
+    Tile endDragTile;
 
 
     @FXML
@@ -40,11 +43,10 @@ public class ChessboardController {
                     ImageView image = board[j][i].getImage();
 
                     image.setOnDragDetected(e -> {
-                        Bounds size = image.localToParent(image.getBoundsInLocal());
-                        System.out.println("detected x: " + size.getMinX() + " y: " + size.getMinY());
+                        startDragTile = tile;
+
                         Dragboard db = image.startDragAndDrop(TransferMode.ANY);
                         ClipboardContent content = new ClipboardContent();
-
                         content.putImage(image.getImage());
                         db.setContent(content);
 
@@ -57,8 +59,8 @@ public class ChessboardController {
                 }
 
                 tile.setOnDragOver(e -> {
-                    Dragboard db = e.getDragboard();
-                    System.out.println("siejejejej");
+                    Bounds size = tile.localToParent(tile.getBoundsInLocal());
+                    startDragTile.getImage().relocate(size.getMinX(), size.getMinY());
                 });
             }
         }
