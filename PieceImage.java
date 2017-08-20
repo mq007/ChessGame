@@ -10,7 +10,6 @@ import javafx.scene.layout.Pane;
 public class PieceImage extends ImageView {
     private Piece piece;
     private Pane chessboard;
-    private ImageView imageView;
     private int x;
     private int y;
 
@@ -20,9 +19,6 @@ public class PieceImage extends ImageView {
         this.x = x;
         this.y = y;
 
-        //imageView = new ImageView(piece.getImage());
-        //imageView.relocate(x * Game.TILE_SIZE, y * Game.TILE_SIZE);
-        //chessboard.getChildren().add(imageView);
         setImage(piece.getImage());
         this.relocate(x * Game.TILE_SIZE, y * Game.TILE_SIZE);
         chessboard.getChildren().add(this);
@@ -42,13 +38,5 @@ public class PieceImage extends ImageView {
 
     public void setChessboard(Pane chessboard) {
         this.chessboard = chessboard;
-    }
-
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
     }
 }
