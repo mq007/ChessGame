@@ -36,30 +36,30 @@ public class ChessboardController {
         pieces = game.getPieces();
 
         for(int i=0; i<32; ++i){
-            PieceImage pieceImage = pieces[i];
+            PieceImage piece = pieces[i];
 
-            pieceImage.setOnDragDetected(e ->{
-                droppingPiece = pieceImage;
-                Dragboard db = pieceImage.startDragAndDrop(TransferMode.ANY);
+            piece.setOnDragDetected(e ->{
+                droppingPiece = piece;
+                Dragboard db = piece.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
-                content.putImage(pieceImage.getImage());
+                content.putImage(piece.getImage());
                 db.setContent(content);
                 e.consume();
             });
 
-            pieceImage.setOnMouseEntered(e ->{
-                pieceImage.setCursor(Cursor.HAND);
+            piece.setOnMouseEntered(e ->{
+                piece.setCursor(Cursor.HAND);
             });
 
-            pieceImage.setOnDragOver(e ->{
+            piece.setOnDragOver(e ->{
                 e.acceptTransferModes(TransferMode.MOVE);
             });
 
-            pieceImage.setOnDragDropped(e ->{
-                if(!pieceImage.equals(droppingPiece)){
-                    board[droppingPiece.getCoordX()][droppingPiece.getCoordY()].setFieldFree(true);
-                    droppingPiece.relocateByCoords(pieceImage.getCoordX(), pieceImage.getCoordY());
-                    chessboard.getChildren().remove(pieceImage);
+            piece.setOnDragDropped(e ->{
+                if(!piece.equals(droppingPiece)){
+                    board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
+                    droppingPiece.relocateByCoords(piece.getCoordX(), piece.getCoordY());
+                    chessboard.getChildren().remove(piece);
                 }
             });
         }
