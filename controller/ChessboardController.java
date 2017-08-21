@@ -2,7 +2,10 @@ package game.controller;
 
 import game.Game;
 import game.PieceImage;
+import game.Position;
 import game.Tile;
+import game.pieces.Bishop;
+import game.pieces.Pawn;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -10,7 +13,8 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+
+import java.util.List;
 
 
 /**
@@ -48,6 +52,20 @@ public class ChessboardController {
             });
 
             piece.setOnMouseEntered(e ->{
+                if(piece.getPiece() instanceof Pawn){
+                    System.out.println("Pionek: ");
+                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                    for(Position position : positionList){
+                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                    }
+                }
+                if(piece.getPiece() instanceof Bishop){
+                    System.out.println("Bishop: ");
+                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                    for(Position position : positionList){
+                        //System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                    }
+                }
                 piece.setCursor(Cursor.HAND);
             });
 
@@ -57,6 +75,7 @@ public class ChessboardController {
 
             piece.setOnDragDropped(e ->{
                 if(!piece.equals(droppingPiece)){
+                    droppingPiece.getPiece().incrementMoveCounter();
                     board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
                     droppingPiece.relocateByCoords(piece.getCoordX(), piece.getCoordY());
                     chessboard.getChildren().remove(piece);
@@ -76,6 +95,7 @@ public class ChessboardController {
                 int finalJ = j;
                 tile.setOnDragDropped(e -> {
                     if(tile.isFieldFree()) {
+                        droppingPiece.getPiece().incrementMoveCounter();
                         board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
                         board[finalI][finalJ].setFieldFree(false);
                         droppingPiece.relocateByCoords(finalJ, finalI);

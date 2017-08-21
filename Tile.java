@@ -12,6 +12,7 @@ public class Tile extends Rectangle{
     private double coordX;
     private double coordY;
     private boolean isFieldFree;
+    private PieceColor fieldColor;
 
     public Tile(boolean isBlack, int vertical, int horizontal) {
         setWidth(Game.TILE_SIZE);
@@ -48,5 +49,13 @@ public class Tile extends Rectangle{
 
     public void setFieldFree(boolean placeFree) {
         isFieldFree = placeFree;
+    }
+
+    public PieceColor getFieldColor() {
+        return fieldColor;
+    }
+
+    public void setFieldColor(PieceColor fieldColor) {
+        this.fieldColor = fieldColor;
     }
 }

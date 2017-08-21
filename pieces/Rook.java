@@ -1,7 +1,8 @@
 package game.pieces;
 
 import game.PieceColor;
-import game.Move;
+import game.Position;
+import game.Tile;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Move> getAvailableMoves() {
+    public List<Position> getAvailableMoves(int x, int y, Tile[][] board) {
         return null;
     }
 }

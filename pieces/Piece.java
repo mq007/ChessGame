@@ -1,8 +1,8 @@
 package game.pieces;
 
 import game.PieceColor;
-import game.Move;
 import game.Position;
+import game.Tile;
 import javafx.scene.image.Image;
 
 import java.util.List;
@@ -16,12 +16,14 @@ public abstract class Piece {
     private PieceColor pieceColor;
     private String name;
     private Image image;
+    private int moveCounter;
 
     protected Piece(){};
 
     public Piece(PieceColor pieceColor, String name) {
         this.pieceColor = pieceColor;
         this.name = name;
+        this.moveCounter = 0;
         setImage();
     }
 
@@ -62,5 +64,17 @@ public abstract class Piece {
         image = new Image("/game/resources/"+nameOfImage);
     }
 
-    public abstract List<Move> getAvailableMoves();
+    public abstract List<Position> getAvailableMoves(int x, int y, Tile[][] board);
+
+    public int getMoveCounter() {
+        return moveCounter;
+    }
+
+    public void setMoveCounter(int moveCounter) {
+        this.moveCounter = moveCounter;
+    }
+
+    public void incrementMoveCounter(){
+        this.moveCounter++;
+    }
 }

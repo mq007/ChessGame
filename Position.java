@@ -25,4 +25,8 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    public void showPos(){
+        System.out.println("\tx: " + x + " y: " + y);
+    }
 }
