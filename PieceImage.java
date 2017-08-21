@@ -39,4 +39,26 @@ public class PieceImage extends ImageView {
     public void setChessboard(Pane chessboard) {
         this.chessboard = chessboard;
     }
+
+    public void relocateByCoords(int x, int y){
+        this.x = x;
+        this.y = y;
+        relocate(x * Game.TILE_SIZE, y * Game.TILE_SIZE);
+    }
+
+    public int getCoordX() {
+        return x;
+    }
+
+    public void setCoordX(int x) {
+        this.x = x;
+    }
+
+    public int getCoordY() {
+        return y;
+    }
+
+    public void setCoordY(int y) {
+        this.y = y;
+    }
 }

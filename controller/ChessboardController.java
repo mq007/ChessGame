@@ -6,11 +6,11 @@ import game.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 /**
@@ -25,7 +25,7 @@ public class ChessboardController {
     private PieceImage[] pieces;
     private Tile[][] board;
 
-    Tile startingDragTile;
+    PieceImage droppingPiece;
 
     @FXML
     void initialize() {
@@ -35,32 +35,52 @@ public class ChessboardController {
         board = game.getBoard();
         pieces = game.getPieces();
 
-        if (pieces == null){
-            System.out.println("pieces null");
-        }else{
-            System.out.println("pieces not null");
-        }
-
         for(int i=0; i<32; ++i){
-            ImageView imageView = pieces[i];
-            System.out.println("I: "+i);
+            PieceImage pieceImage = pieces[i];
 
-            imageView.setOnDragDetected(e ->{
-                Dragboard db = imageView.startDragAndDrop(TransferMode.ANY);
+            pieceImage.setOnDragDetected(e ->{
+                droppingPiece = pieceImage;
+                Dragboard db = pieceImage.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
-                content.putImage(imageView.getImage());
+                content.putImage(pieceImage.getImage());
                 db.setContent(content);
                 e.consume();
             });
 
-            imageView.setOnMouseEntered(e ->{
-                imageView.setCursor(Cursor.HAND);
+            pieceImage.setOnMouseEntered(e ->{
+                pieceImage.setCursor(Cursor.HAND);
+            });
+
+            pieceImage.setOnDragOver(e ->{
+                e.acceptTransferModes(TransferMode.MOVE);
+            });
+
+            pieceImage.setOnDragDropped(e ->{
+                if(!pieceImage.equals(droppingPiece)){
+                    board[droppingPiece.getCoordX()][droppingPiece.getCoordY()].setFieldFree(true);
+                    droppingPiece.relocateByCoords(pieceImage.getCoordX(), pieceImage.getCoordY());
+                    chessboard.getChildren().remove(pieceImage);
+                }
             });
         }
 
         for(int i=0; i<Game.WIDTH_BOARD; ++i){
             for (int j=0; j<Game.HEIGHT_BOARD; ++j){
+                Tile tile = board[i][j];
 
+                tile.setOnDragOver(e ->{
+                    e.acceptTransferModes(TransferMode.ANY);
+                });
+
+                int finalI = i;
+                int finalJ = j;
+                tile.setOnDragDropped(e -> {
+                    if(tile.isFieldFree()) {
+                        board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
+                        board[finalI][finalJ].setFieldFree(false);
+                        droppingPiece.relocateByCoords(finalJ, finalI);
+                    }
+                });
             }
         }
     }

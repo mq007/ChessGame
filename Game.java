@@ -2,6 +2,7 @@ package game;
 
 import game.pieces.PieceFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 /**
  * Created by mq on 2017-08-18.
@@ -71,6 +72,9 @@ public class Game {
             for(int j=0; j<HEIGHT_BOARD; ++j){
                 Tile tile = new Tile(isBlack, i, j);
                 board[i][j] = tile;
+                if(i==0 || i==1 || i==6 || i==7){
+                    tile.setFieldFree(false);
+                }
                 chessboard.getChildren().add(tile);
                 isBlack = !isBlack;
             }
