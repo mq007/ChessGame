@@ -5,6 +5,7 @@ import game.PieceImage;
 import game.Position;
 import game.Tile;
 import game.pieces.Bishop;
+import game.pieces.Knight;
 import game.pieces.Pawn;
 import game.pieces.Rook;
 import javafx.fxml.FXML;
@@ -74,6 +75,14 @@ public class ChessboardController {
                         System.out.println("[" + position.getY() + "][" + position.getX() + "]");
                     }
                 }
+                if(piece.getPiece() instanceof Knight){
+                    System.out.println("Knight: ");
+                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                    for(Position position : positionList){
+                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                    }
+                }
+
                 piece.setCursor(Cursor.HAND);
             });
 
