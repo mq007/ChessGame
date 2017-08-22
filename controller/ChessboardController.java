@@ -4,7 +4,6 @@ import game.Game;
 import game.PieceImage;
 import game.Position;
 import game.Tile;
-import game.pieces.*;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -12,6 +11,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -53,52 +53,19 @@ public class ChessboardController {
             });
 
             piece.setOnMouseEntered(e ->{
-                if(piece.getPiece() instanceof Pawn){
-                    System.out.println("Pionek: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
-                }
-                if(piece.getPiece() instanceof Bishop){
-                    System.out.println("Bishop: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
-                }
-                if(piece.getPiece() instanceof Rook){
-                    System.out.println("Rook: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
-                }
-                if(piece.getPiece() instanceof Knight){
-                    System.out.println("Knight: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
-                }
-
-                if(piece.getPiece() instanceof Queen){
-                    System.out.println("Queen: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
-                }
-
-                if(piece.getPiece() instanceof King){
-                    System.out.println("King: ");
-                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
-                    for(Position position : positionList){
-                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
-                    }
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                for(Position position : positionList){
+                    board[position.getY()][position.getX()].setFill(Color.GREEN);
                 }
 
                 piece.setCursor(Cursor.HAND);
+            });
+
+            piece.setOnMouseExited(e ->{
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                for(Position position : positionList){
+                    board[position.getY()][position.getX()].resetColorOfTile();
+                }
             });
 
             piece.setOnDragOver(e ->{
