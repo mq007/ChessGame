@@ -64,7 +64,7 @@ public abstract class Piece {
         image = new Image("/game/resources/"+nameOfImage);
     }
 
-    public abstract List<Position> getAvailableMoves(int x, int y, Tile[][] board);
+    public abstract List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard);
 
     public int getMoveCounter() {
         return moveCounter;

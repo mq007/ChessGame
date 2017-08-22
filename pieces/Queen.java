@@ -18,14 +18,14 @@ public class Queen extends Piece {
     }
 
     @Override
-    public List<Position> getAvailableMoves(int x, int y, Tile[][] board) {
+    public List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard) {
         List<Position> moveList = new ArrayList<>();
 
         Rook pieceRook = new Rook(getPieceColor());
-        List<Position> rookMoves = pieceRook.getAvailableMoves(x,y,board);
+        List<Position> rookMoves = pieceRook.getAvailableMoves(x,y,board, colorBoard);
 
         Bishop pieceBishop = new Bishop(getPieceColor());
-        List<Position> bishopMoves = pieceBishop.getAvailableMoves(x,y,board);
+        List<Position> bishopMoves = pieceBishop.getAvailableMoves(x,y,board, colorBoard);
 
         moveList.addAll(rookMoves);
         moveList.addAll(bishopMoves);

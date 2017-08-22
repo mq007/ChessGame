@@ -1,7 +1,6 @@
 package game.pieces;
 
 import game.PieceColor;
-import game.Move;
 import game.Position;
 import game.Tile;
 
@@ -19,7 +18,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Position> getAvailableMoves(int x, int y, Tile[][] board) {
+    public List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard) {
         List<Position> moveList = new ArrayList<>();
 
         if(getPieceColor().equals(PieceColor.BLACK)){

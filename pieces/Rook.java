@@ -17,7 +17,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Position> getAvailableMoves(int x, int y, Tile[][] board) {
+    public List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard) {
         List<Position> moveList = new ArrayList<>();
 
         int tmpX = x;

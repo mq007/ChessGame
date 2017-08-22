@@ -17,7 +17,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public List<Position> getAvailableMoves(int x, int y, Tile[][] board) {
+    public List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard) {
         List<Position> bishopMoveList = new ArrayList<>();
         int tmpX = x;
         int tmpY = y;
