@@ -47,6 +47,19 @@ public class King extends Piece{
             moveList.add(new Position(x, y-1));
         }
 
+        List<Position> tmpList = new ArrayList<>();
+        for(Position position : moveList){
+            PieceColor color = board[position.getY()][position.getX()].getPieceOnFieldColor();
+            if(color == null){
+                tmpList.add(position);
+            }else{
+                if(!color.equals(this.getPieceColor())){
+                    tmpList.add(position);
+                }
+            }
+        }
+        moveList = tmpList;
+
         return moveList;
     }
 }

@@ -1,9 +1,7 @@
 package game.controller;
 
-import game.Game;
-import game.PieceImage;
-import game.Position;
-import game.Tile;
+import game.*;
+import game.pieces.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -55,16 +53,16 @@ public class ChessboardController {
             });
 
             piece.setOnMouseEntered(e ->{
-                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, whiteBoard);
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, getColorBoard(piece.getPiece()));
                 for(Position position : positionList){
-                    board[position.getY()][position.getX()].setFill(Color.GREEN);
+                    board[position.getY()][position.getX()].setFill(Color.LIMEGREEN);
                 }
 
                 piece.setCursor(Cursor.HAND);
             });
 
             piece.setOnMouseExited(e ->{
-                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, whiteBoard);
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, getColorBoard(piece.getPiece()));
                 for(Position position : positionList){
                     board[position.getY()][position.getX()].resetColorOfTile();
                 }
@@ -75,11 +73,14 @@ public class ChessboardController {
             });
 
             piece.setOnDragDropped(e ->{
-                System.out.println(piece.toString());
-                System.out.println(droppingPiece.toString());
                 if(!piece.equals(droppingPiece) && !piece.getPiece().getPieceColor().equals(droppingPiece.getPiece().getPieceColor())){
                     droppingPiece.getPiece().incrementMoveCounter();
+
+                    board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setPieceOnFieldColor(null);
+                    board[piece.getCoordY()][piece.getCoordX()].setPieceOnFieldColor(droppingPiece.getPiece().getPieceColor());
+
                     board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
+
                     droppingPiece.relocateByCoords(piece.getCoordX(), piece.getCoordY());
                     chessboard.getChildren().remove(piece);
                 }
@@ -99,12 +100,48 @@ public class ChessboardController {
                 tile.setOnDragDropped(e -> {
                     if(tile.isFieldFree()) {
                         droppingPiece.getPiece().incrementMoveCounter();
+
                         board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
                         board[finalI][finalJ].setFieldFree(false);
+
+                        board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setPieceOnFieldColor(null);
+                        tile.setPieceOnFieldColor(droppingPiece.getPiece().getPieceColor());
+
                         droppingPiece.relocateByCoords(finalJ, finalI);
                     }
+
+                    /*
+                    for(int ii=0; ii<Game.WIDTH_BOARD; ++ii) {
+                        for (int jj = 0; jj < Game.HEIGHT_BOARD; ++jj) {
+                            Tile xx = board[ii][jj];
+                            xx.resetColorOfTile();
+                        }
+                    }
+
+                    for(int ii=0; ii<Game.WIDTH_BOARD; ++ii) {
+                        for (int jj=0; jj<Game.HEIGHT_BOARD; ++jj) {
+                            Tile tilex = board[ii][jj];
+                            if(tilex.getPieceOnFieldColor() != null){
+                                if(tilex.getPieceOnFieldColor().equals(PieceColor.BLACK)){
+                                    tilex.setFill(Color.RED);
+                                }
+                                if(tilex.getPieceOnFieldColor().equals(PieceColor.WHITE)){
+                                    tilex.setFill(Color.WHITE);
+                                }
+                            }
+                        }
+                    }
+                    */
                 });
             }
+        }
+    }
+
+    public boolean[][] getColorBoard(Piece piece){
+        if(piece.getPieceColor().equals(PieceColor.BLACK)){
+            return blackBoard;
+        }else{
+            return whiteBoard;
         }
     }
 }

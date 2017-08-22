@@ -2,6 +2,7 @@ package game;
 
 import game.pieces.PieceFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 /**
  * Created by mq on 2017-08-18.

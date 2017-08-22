@@ -18,7 +18,7 @@ public class Bishop extends Piece {
 
     @Override
     public List<Position> getAvailableMoves(int x, int y, Tile[][] board, boolean[][] colorBoard) {
-        List<Position> bishopMoveList = new ArrayList<>();
+        List<Position> moveList = new ArrayList<>();
         int tmpX = x;
         int tmpY = y;
         boolean end = false;
@@ -26,7 +26,7 @@ public class Bishop extends Piece {
         while(tmpX+1<8 && tmpY+1<8 && !end){
             tmpX++;
             tmpY++;
-            bishopMoveList.add(new Position(tmpX, tmpY));
+            moveList.add(new Position(tmpX, tmpY));
             if(!board[tmpY][tmpX].isFieldFree()){
                 end = true;
             }
@@ -38,7 +38,7 @@ public class Bishop extends Piece {
         while(tmpX+1<8 && tmpY-1>=0 && !end){
             tmpX++;
             tmpY--;
-            bishopMoveList.add(new Position(tmpX, tmpY));
+            moveList.add(new Position(tmpX, tmpY));
             if(!board[tmpY][tmpX].isFieldFree()){
                 end = true;
             }
@@ -50,7 +50,7 @@ public class Bishop extends Piece {
         while(tmpX-1>=0 && tmpY-1>=0 && !end){
             tmpX--;
             tmpY--;
-            bishopMoveList.add(new Position(tmpX, tmpY));
+            moveList.add(new Position(tmpX, tmpY));
             if(!board[tmpY][tmpX].isFieldFree()){
                 end = true;
             }
@@ -62,14 +62,25 @@ public class Bishop extends Piece {
         while(tmpX-1>=0 && tmpY+1<8 && !end){
             tmpX--;
             tmpY++;
-            bishopMoveList.add(new Position(tmpX, tmpY));
+            moveList.add(new Position(tmpX, tmpY));
             if(!board[tmpY][tmpX].isFieldFree()){
                 end = true;
             }
         }
 
-        //check if on this position is your own color piece
+        List<Position> tmpList = new ArrayList<>();
+        for(Position position : moveList){
+            PieceColor color = board[position.getY()][position.getX()].getPieceOnFieldColor();
+            if(color == null){
+                tmpList.add(position);
+            }else{
+                if(!color.equals(this.getPieceColor())){
+                    tmpList.add(position);
+                }
+            }
+        }
+        moveList = tmpList;
 
-        return bishopMoveList;
+        return moveList;
     }
 }
