@@ -24,11 +24,9 @@ public class King extends Piece{
             moveList.add(new Position(x+1,y));
             if(y+1<8){
                 moveList.add(new Position(x+1, y+1));
-                moveList.add(new Position(x, y+1));
             }
-            if(y-1<8){
+            if(y-1>=0){
                 moveList.add(new Position(x+1, y-1));
-                moveList.add(new Position(x, y-1));
             }
         }
         if(x-1>=0){
@@ -39,6 +37,14 @@ public class King extends Piece{
             if(y-1>=0){
                 moveList.add(new Position(x-1, y-1));
             }
+        }
+
+        if(y+1<8){
+            moveList.add(new Position(x, y+1));
+        }
+
+        if(y-1>=0){
+            moveList.add(new Position(x, y-1));
         }
 
         return moveList;
