@@ -77,4 +77,12 @@ public class Tile extends Rectangle{
     public void setFieldColor(PieceColor fieldColor) {
         this.fieldColor = fieldColor;
     }
+
+    public void resetColorOfTile(){
+        if(fieldColor.equals(PieceColor.BLACK)){
+            setFill(Color.valueOf("FFCE9E"));
+        }else{
+            setFill(Color.valueOf("D18B47"));
+        }
+    }
 }
