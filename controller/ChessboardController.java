@@ -6,6 +6,7 @@ import game.Position;
 import game.Tile;
 import game.pieces.Bishop;
 import game.pieces.Pawn;
+import game.pieces.Rook;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -63,7 +64,14 @@ public class ChessboardController {
                     System.out.println("Bishop: ");
                     List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
                     for(Position position : positionList){
-                        //System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                    }
+                }
+                if(piece.getPiece() instanceof Rook){
+                    System.out.println("Rook: ");
+                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                    for(Position position : positionList){
+                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
                     }
                 }
                 piece.setCursor(Cursor.HAND);
