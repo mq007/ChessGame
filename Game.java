@@ -73,8 +73,10 @@ public class Game {
                 board[i][j] = tile;
                 if(i==0 || i==1){
                     tile.setFieldFree(false);
+                    tile.setPieceOnFieldColor(PieceColor.BLACK);
                 }else if(i==6 || i==7){
                     tile.setFieldFree(false);
+                    tile.setPieceOnFieldColor(PieceColor.WHITE);
                 }
                 chessboard.getChildren().add(tile);
                 isBlack = !isBlack;
