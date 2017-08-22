@@ -75,7 +75,9 @@ public class ChessboardController {
             });
 
             piece.setOnDragDropped(e ->{
-                if(!piece.equals(droppingPiece)){
+                System.out.println(piece.toString());
+                System.out.println(droppingPiece.toString());
+                if(!piece.equals(droppingPiece) && !piece.getPiece().getPieceColor().equals(droppingPiece.getPiece().getPieceColor())){
                     droppingPiece.getPiece().incrementMoveCounter();
                     board[droppingPiece.getCoordY()][droppingPiece.getCoordX()].setFieldFree(true);
                     droppingPiece.relocateByCoords(piece.getCoordX(), piece.getCoordY());
