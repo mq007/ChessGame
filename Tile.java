@@ -12,6 +12,7 @@ public class Tile extends Rectangle{
     private double coordX;
     private double coordY;
     private boolean isFieldFree;
+    private PieceColor pieceOnFieldColor;
     private PieceColor fieldColor;
 
     public Tile(boolean isBlack, int vertical, int horizontal) {
@@ -24,7 +25,13 @@ public class Tile extends Rectangle{
         coordY = vertical * Game.TILE_SIZE;
         relocate(coordX, coordY);
 
-        setFill(isBlack ? Color.valueOf("FFCE9E") : Color.valueOf("D18B47"));
+        if(isBlack){
+            fieldColor = PieceColor.BLACK;
+            setFill(Color.valueOf("FFCE9E"));
+        }else{
+            fieldColor = PieceColor.WHITE;
+            setFill(Color.valueOf("D18B47"));
+        }
     }
 
     public double getCoordX() {
@@ -49,6 +56,14 @@ public class Tile extends Rectangle{
 
     public void setFieldFree(boolean placeFree) {
         isFieldFree = placeFree;
+    }
+
+    public PieceColor getPieceOnFieldColor() {
+        return pieceOnFieldColor;
+    }
+
+    public void setPieceOnFieldColor(PieceColor pieceOnFieldColor) {
+        this.pieceOnFieldColor = pieceOnFieldColor;
     }
 
     public PieceColor getFieldColor() {
