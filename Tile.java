@@ -27,9 +27,13 @@ public class Tile extends Rectangle{
 
         if(isBlack){
             fieldColor = PieceColor.BLACK;
+            setStyle("-fx-stroke: black;\n" +
+                    "    -fx-stroke-width: 1;");
             setFill(Color.valueOf("FFCE9E"));
         }else{
             fieldColor = PieceColor.WHITE;
+            setStyle("-fx-stroke: black;\n" +
+                    "    -fx-stroke-width: 1;");
             setFill(Color.valueOf("D18B47"));
         }
     }
