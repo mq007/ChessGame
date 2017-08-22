@@ -27,6 +27,8 @@ public class ChessboardController {
 
     private PieceImage[] pieces;
     private Tile[][] board;
+    private boolean [][] whiteBoard;
+    private boolean [][] blackBoard;
 
     PieceImage droppingPiece;
 
@@ -88,6 +90,13 @@ public class ChessboardController {
                     }
                 }
 
+                if(piece.getPiece() instanceof King){
+                    System.out.println("King: ");
+                    List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                    for(Position position : positionList){
+                        System.out.println("[" + position.getY() + "][" + position.getX() + "]");
+                    }
+                }
 
                 piece.setCursor(Cursor.HAND);
             });
