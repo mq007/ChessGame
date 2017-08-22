@@ -39,6 +39,8 @@ public class ChessboardController {
         game.newGame();
         board = game.getBoard();
         pieces = game.getPieces();
+        whiteBoard = new boolean[8][8];
+        blackBoard = new boolean[8][8];
 
         for(int i=0; i<32; ++i){
             PieceImage piece = pieces[i];
@@ -53,7 +55,7 @@ public class ChessboardController {
             });
 
             piece.setOnMouseEntered(e ->{
-                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, whiteBoard);
                 for(Position position : positionList){
                     board[position.getY()][position.getX()].setFill(Color.GREEN);
                 }
@@ -62,7 +64,7 @@ public class ChessboardController {
             });
 
             piece.setOnMouseExited(e ->{
-                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board);
+                List<Position> positionList = piece.getPiece().getAvailableMoves(piece.getCoordX(), piece.getCoordY(), board, whiteBoard);
                 for(Position position : positionList){
                     board[position.getY()][position.getX()].resetColorOfTile();
                 }
