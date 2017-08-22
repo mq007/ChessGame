@@ -45,23 +45,23 @@ public class Game {
         pieces[14] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.BLACK), chessboard,1, 6);
         pieces[15] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.BLACK), chessboard,1, 7);
 
-        pieces[16] = new PieceImage(pieceFactory.createPiece("Rook", PieceColor.WHITE), chessboard, 6, 0);
-        pieces[17] = new PieceImage(pieceFactory.createPiece("Knight", PieceColor.WHITE), chessboard, 6, 1);
-        pieces[18] = new PieceImage(pieceFactory.createPiece("Bishop", PieceColor.WHITE), chessboard,6, 2);
-        pieces[19] = new PieceImage(pieceFactory.createPiece("Queen", PieceColor.WHITE), chessboard,6, 3);
-        pieces[20] = new PieceImage(pieceFactory.createPiece("King", PieceColor.WHITE), chessboard,6, 4);
-        pieces[21] = new PieceImage(pieceFactory.createPiece("Bishop", PieceColor.WHITE), chessboard,6, 5);
-        pieces[22] = new PieceImage(pieceFactory.createPiece("Knight", PieceColor.WHITE), chessboard,6, 6);
-        pieces[23] = new PieceImage(pieceFactory.createPiece("Rook", PieceColor.WHITE), chessboard,6, 7);
+        pieces[16] = new PieceImage(pieceFactory.createPiece("Rook", PieceColor.WHITE), chessboard, 7, 0);
+        pieces[17] = new PieceImage(pieceFactory.createPiece("Knight", PieceColor.WHITE), chessboard, 7, 1);
+        pieces[18] = new PieceImage(pieceFactory.createPiece("Bishop", PieceColor.WHITE), chessboard,7, 2);
+        pieces[19] = new PieceImage(pieceFactory.createPiece("Queen", PieceColor.WHITE), chessboard,7, 3);
+        pieces[20] = new PieceImage(pieceFactory.createPiece("King", PieceColor.WHITE), chessboard,7, 4);
+        pieces[21] = new PieceImage(pieceFactory.createPiece("Bishop", PieceColor.WHITE), chessboard,7, 5);
+        pieces[22] = new PieceImage(pieceFactory.createPiece("Knight", PieceColor.WHITE), chessboard,7, 6);
+        pieces[23] = new PieceImage(pieceFactory.createPiece("Rook", PieceColor.WHITE), chessboard,7, 7);
 
-        pieces[24] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 0);
-        pieces[25] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 1);
-        pieces[26] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 2 );
-        pieces[27] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 3);
-        pieces[28] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 4);
-        pieces[29] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 5);
-        pieces[30] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard, 7, 6);
-        pieces[31] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,7, 7);
+        pieces[24] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 0);
+        pieces[25] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 1);
+        pieces[26] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 2 );
+        pieces[27] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 3);
+        pieces[28] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 4);
+        pieces[29] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 5);
+        pieces[30] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard, 6, 6);
+        pieces[31] = new PieceImage(pieceFactory.createPiece("Pawn", PieceColor.WHITE), chessboard,6, 7);
 
     }
 
